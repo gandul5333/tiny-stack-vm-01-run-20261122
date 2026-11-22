@@ -54,7 +54,7 @@ if(o==82){D[s++]=j<q.length?q[j++]:-1;continue}
 return F(D[--s]&255)}
 }
 const I=process.env.MAKEFUN_INPUT_DIR??"/input",O=process.env.MAKEFUN_OUTPUT_DIR??"/output";
-for(const d of readdirSync(I).sort()){
+for(const d of readdirSync(I,{withFileTypes:true}).filter(e=>e.isDirectory()).map(e=>e.name).sort()){
 const r=R(new Uint8Array(readFileSync(join(I,d,"program.bin"))),new Uint8Array(readFileSync(join(I,d,"input.bin"))));
 mkdirSync(join(O,d),{recursive:true});
 writeFileSync(join(O,d,"stdout.bin"),r.o);
